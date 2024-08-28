@@ -58,3 +58,40 @@ const user3 = {
   age: 17,
   isActive: true,
 }
+
+/**
+ * Imprime por consola un saludo del nombre del usuario
+ * @param {User} user
+ * @returns {void}
+ * @example
+ * sayHello(user)
+ */
+function sayHello(user) {
+  console.log(`Hola ${user.name}`)
+}
+
+/**
+ * @function
+ * @param {number[]} numbers - el array de números a filtrar
+ * @returns {number[]} un nuevo array con los números pares
+ */
+function filterEvenNumbers(numbers) {
+  return numbers.filter((number) => number % 2 === 0);
+}
+
+/**
+ * @async
+ * @function
+ * @param {string} url - la URL del servicio
+ * @returns {Promise<object>} - los datos obtenidos del servicio
+ * @throws {Error} si la petición al servicio falla
+ */
+async function fetchData(url) {
+  const response = await fetch(url);
+
+  if (!response.ok) {
+    throw new Error('Fallo al obtener los datos del servidor');
+  }
+
+  return response.json();
+}
