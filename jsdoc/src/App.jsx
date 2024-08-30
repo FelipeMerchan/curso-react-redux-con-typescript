@@ -7,6 +7,7 @@ import { useSearch } from './hooks/useSearch';
 import './App.css'
 import BasicComponent from './proptypes/BasicComponent';
 import ComponentAvanzado from './proptypes/ComponentAvanzado';
+import ComponentsWithChildren from './proptypes/ComponentsWithChildren';
 
 const list = [
   {
@@ -81,10 +82,13 @@ function App() {
         {
           loading ? <p>Cargando...</p> : <Movies movies={movies} />
         }
-        <br />
-        <br />
-        <BasicComponent data={[1, 2, 3]} />
-        <ComponentAvanzado list={list} title='Tecnologías' />
+        <div>
+          <BasicComponent data={[1, 2, 3]} />
+          <ComponentAvanzado list={list} title='Tecnologías' />
+          <ComponentsWithChildren title='Encabezado'>
+            <p>children</p>
+          </ComponentsWithChildren>
+        </div>
       </main>
     </div>
   )
