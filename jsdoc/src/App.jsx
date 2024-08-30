@@ -1,10 +1,11 @@
-import { useState, useCallback } from 'react';
+import React, { useState, useCallback } from 'react';
 import debounce from 'just-debounce-it';
 
 import { Movies } from './components/Movies'
 import { useMovies } from './hooks/useMovies';
 import { useSearch } from './hooks/useSearch';
 import './App.css'
+import BasicComponent from './proptypes/BasicComponent';
 
 function App() {
   const [sort, setSort] = useState(false);
@@ -68,6 +69,9 @@ function App() {
         {
           loading ? <p>Cargando...</p> : <Movies movies={movies} />
         }
+        <br />
+        <br />
+        <BasicComponent data={[1, 2, 3]} />
       </main>
     </div>
   )
