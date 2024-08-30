@@ -6,6 +6,18 @@ import { useMovies } from './hooks/useMovies';
 import { useSearch } from './hooks/useSearch';
 import './App.css'
 import BasicComponent from './proptypes/BasicComponent';
+import ComponentAvanzado from './proptypes/ComponentAvanzado';
+
+const list = [
+  {
+    id: 1,
+    name: 'React',
+  },
+  {
+    id: 2,
+    name: 'Vue',
+  },
+]
 
 function App() {
   const [sort, setSort] = useState(false);
@@ -72,6 +84,7 @@ function App() {
         <br />
         <br />
         <BasicComponent data={[1, 2, 3]} />
+        <ComponentAvanzado list={list} title='Tecnologías' />
       </main>
     </div>
   )
