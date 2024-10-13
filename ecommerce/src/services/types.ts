@@ -1,9 +1,9 @@
 export type Product = {
-  character: string;
-  gameSeries: string;
+  id: string;
   image: string;
-  name: string;
   price: number;
+  title: string;
+  type: Type;
 }
 
 export interface ProductResponse {

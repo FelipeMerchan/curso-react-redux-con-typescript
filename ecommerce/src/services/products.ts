@@ -7,11 +7,11 @@ export const getProducts = async (): Promise<Product[]> => {
 
     return data.map((product) => {
       const MapProduct: Product = {
-        character: product.character ?? '',
-        gameSeries: product.gameSeries ?? '',
+        id: product.id,
         image: product.image ?? '',
-        name: product.name ?? '',
         price: product.price ?? 0,
+        title: product.name ?? '',
+        type: product.type ?? '',
       }
 
       return MapProduct;
