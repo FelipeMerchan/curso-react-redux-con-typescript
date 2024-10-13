@@ -9,6 +9,8 @@ export const Home = () => {
   return (
     <>
       <Hero />
+      {isLoading && <p>Loading</p>}
+      {error && <p>Something went wrong</p>}
       <div className={styles.container}>
         {products.map((product) => (
           <CardProduct key={product.id} product={product} />

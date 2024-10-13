@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
-import { getProducts } from "../services/products"
-import { Product } from "../services/types"
+import { getProducts } from "../services"
+import { type Product } from "../interface"
 
 export const useProducts = () => {
   const [products, setProducts] = useState<Product[]>([])
