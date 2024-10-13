@@ -38,3 +38,8 @@
   right: 0px;
   top: -25px;
 }
+
+.navbarButton {
+  background-color: transparent;
+  border: none;
+}
