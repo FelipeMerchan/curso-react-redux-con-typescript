@@ -1,3 +1,4 @@
+import { useCartContext } from "../../../context/useCartContext";
 import { Product } from "../../../services/types";
 import styles from "./CartProduct.module.css";
 
@@ -6,6 +7,19 @@ type Props = {
 };
 
 export const CardProduct = ({ product }: Props): JSX.Element => {
+  const { addToCart } = useCartContext();
+
+  const item = {
+    id: product.id,
+    name: product.title,
+    image: product.image,
+    quantity: 1,
+  };
+
+  const handleClick = (item) => () => {
+    addToCart(item);
+  };
+
   return (
     <div className={styles.cardContainer}>
       <img
@@ -21,7 +35,9 @@ export const CardProduct = ({ product }: Props): JSX.Element => {
             Price, <small>00</small>
           </p>
         </div>
-        <button className={styles.cardButton}>Add to cart</button>
+        <button className={styles.cardButton} onClick={handleClick(item)}>
+          Add to cart
+        </button>
       </div>
     </div>
   );
