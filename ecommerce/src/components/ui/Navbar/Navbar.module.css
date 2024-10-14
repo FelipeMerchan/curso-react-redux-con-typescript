@@ -1,8 +1,4 @@
 .navbarContainer {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
   align-items: center;
   background-color: transparent;
   display: flex;
@@ -15,6 +11,13 @@
   cursor: pointer;
   display: flex;
   gap: 1.2rem;
+}
+
+.navbarLink {
+  text-decoration: none;
+  color: #fff;
+  display: flex;
+  align-items: center;
 }
 
 .navbarCartContainer {

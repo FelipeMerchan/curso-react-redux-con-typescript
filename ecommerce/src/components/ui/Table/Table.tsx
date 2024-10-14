@@ -1,5 +1,6 @@
 import { useCartContext } from "../../../context/useCartContext";
 import { type CartProduct } from "../../../interface";
+import { totalPay } from "../../../utils/price";
 import styles from "./Table.module.css";
 
 export const Table = () => {
@@ -15,14 +16,6 @@ export const Table = () => {
 
   const createAddToCart = (item: CartProduct) => () => {
     addToCart(item);
-  };
-
-  const totalPay = () => {
-    const total = cartItems.reduce((acc, item) => {
-      return acc + item.price * item.quantity;
-    }, 0);
-
-    return total;
   };
 
   return (
@@ -66,7 +59,7 @@ export const Table = () => {
         </tbody>
       </table>
       <p>
-        <strong>Total: ${totalPay()}</strong>
+        <strong>Total: ${totalPay(cartItems)}</strong>
       </p>
     </div>
   );
