@@ -11,12 +11,13 @@ export const CardProduct = ({ product }: Props): JSX.Element => {
 
   const item: CartProduct = {
     id: product.id,
-    title: product.title,
     image: product.image,
+    price: product.price,
     quantity: 1,
+    title: product.title,
   };
 
-  const handleClick = (item: CartProduct) => () => {
+  const createHandleClick = (item: CartProduct) => () => {
     addToCart(item);
   };
 
@@ -35,7 +36,7 @@ export const CardProduct = ({ product }: Props): JSX.Element => {
             Price, <small>00</small>
           </p>
         </div>
-        <button className={styles.cardButton} onClick={handleClick(item)}>
+        <button className={styles.cardButton} onClick={createHandleClick(item)}>
           Add to cart
         </button>
       </div>

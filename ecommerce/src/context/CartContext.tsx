@@ -5,6 +5,7 @@ import { type CartProduct } from "../interface";
 interface CartContext {
   state: CartState;
   addToCart: (item: CartProduct) => void;
+  removeFromCart: (item: CartProduct) => void;
 }
 
-export const CartContext = createContext<CartContext | null>(null);
+export const CartContext = createContext({} as CartContext);

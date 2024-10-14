@@ -16,12 +16,17 @@ export const CartProvider = ({ children }: PropsWithChildren) => {
     dispatch({ type: "ADD_TO_CART", payload: item });
   }, []);
 
+  const removeFromCart = useCallback((item: CartProduct) => {
+    dispatch({ type: "REMOVE_FROM_CART", payload: item });
+  }, []);
+
   const value = useMemo(() => {
     return {
       state,
       addToCart,
+      removeFromCart,
     };
-  }, [state, addToCart]);
+  }, [state, addToCart, removeFromCart]);
 
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>;
 };

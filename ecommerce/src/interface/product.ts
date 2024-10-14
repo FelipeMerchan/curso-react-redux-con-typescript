@@ -9,6 +9,7 @@ export type Product = {
 export type CartProduct = {
   id: string;
   image: string;
+  price: number;
   quantity: number;
   title: string;
 }
