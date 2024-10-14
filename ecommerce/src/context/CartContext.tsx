@@ -1,3 +1,10 @@
 import { createContext } from "react";
+import { type CartState } from "./cartReducer";
+import { type CartProduct } from "../interface";
 
-export const CartContext = createContext(null);
+interface CartContext {
+  state: CartState;
+  addToCart: (item: CartProduct) => void;
+}
+
+export const CartContext = createContext<CartContext | null>(null);
