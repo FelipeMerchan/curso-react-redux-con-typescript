@@ -22,6 +22,14 @@ export const CartModal = ({ handleShowCartModal }: Props): JSX.Element => {
     addToCart(item);
   };
 
+  const totalPay = () => {
+    const total = cartItems.reduce((acc, item) => {
+      return acc + item.price * item.quantity;
+    }, 0);
+
+    return total;
+  };
+
   return (
     <div className={styles.modalContainer}>
       <button className={styles.modalCloseButton} onClick={handleShowCartModal}>
@@ -66,7 +74,7 @@ export const CartModal = ({ handleShowCartModal }: Props): JSX.Element => {
         </tbody>
       </table>
       <p>
-        <strong>Total: 400,00</strong>
+        <strong>Total: ${totalPay()}</strong>
       </p>
       <button className={styles.modalCheckout}>Checkout</button>
     </div>

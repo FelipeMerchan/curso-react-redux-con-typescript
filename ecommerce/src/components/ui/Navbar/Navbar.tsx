@@ -4,9 +4,13 @@ import Logo from "../../../assets/logo.svg";
 import CartIcon from "../../../assets/cart.svg";
 import styles from "./Navbar.module.css";
 import { CartModal } from "../CartModal";
+import { useCartContext } from "../../../context/useCartContext";
 
 export const Navbar = () => {
   const [showModal, setShowModal] = useState(false);
+  const {
+    state: { cartItems },
+  } = useCartContext();
 
   const handleShowCartModal = () => {
     setShowModal((prev) => !prev);
@@ -21,7 +25,9 @@ export const Navbar = () => {
         </div>
       </div>
       <div className={styles.navbarCartContainer}>
-        <p className={styles.navbarTextAmount}>2</p>
+        {cartItems.length > 0 && (
+          <p className={styles.navbarTextAmount}>{cartItems.length}</p>
+        )}
         <button className={styles.navbarButton} onClick={handleShowCartModal}>
           <img
             src={CartIcon}
