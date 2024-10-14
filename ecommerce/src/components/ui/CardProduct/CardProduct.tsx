@@ -1,5 +1,5 @@
 import { useCartContext } from "../../../context/useCartContext";
-import { Product } from "../../../services/types";
+import { type CartProduct, type Product } from "../../../interface";
 import styles from "./CartProduct.module.css";
 
 type Props = {
@@ -9,14 +9,14 @@ type Props = {
 export const CardProduct = ({ product }: Props): JSX.Element => {
   const { addToCart } = useCartContext();
 
-  const item = {
+  const item: CartProduct = {
     id: product.id,
-    name: product.title,
+    title: product.title,
     image: product.image,
     quantity: 1,
   };
 
-  const handleClick = (item) => () => {
+  const handleClick = (item: CartProduct) => () => {
     addToCart(item);
   };
 

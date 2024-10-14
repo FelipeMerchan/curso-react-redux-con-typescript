@@ -6,6 +6,13 @@ export type Product = {
   type: Type;
 }
 
+export type CartProduct = {
+  id: string;
+  image: string;
+  quantity: number;
+  title: string;
+}
+
 export interface ProductResponse {
   amiiboSeries: AmiiboSeries;
   character:    string;
