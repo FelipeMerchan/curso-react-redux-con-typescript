@@ -1,33 +1,19 @@
+import { useNavigate } from "react-router-dom";
+
 import styles from "./CartModal.module.css";
 import CloseIcon from "../../../assets/close.svg";
-import { useCartContext } from "../../../context/useCartContext";
-import { type CartProduct } from "../../../interface";
+import { Table } from "../Table/Table";
 
 type Props = {
   handleShowCartModal: () => void;
 };
 
 export const CartModal = ({ handleShowCartModal }: Props): JSX.Element => {
-  const {
-    addToCart,
-    state: { cartItems },
-    removeFromCart,
-  } = useCartContext();
+  const navigate = useNavigate();
 
-  const createRemoveFromCart = (item: CartProduct) => () => {
-    removeFromCart(item);
-  };
-
-  const createAddToCart = (item: CartProduct) => () => {
-    addToCart(item);
-  };
-
-  const totalPay = () => {
-    const total = cartItems.reduce((acc, item) => {
-      return acc + item.price * item.quantity;
-    }, 0);
-
-    return total;
+  const handleNavigate = () => {
+    navigate("/checkout");
+    handleShowCartModal();
   };
 
   return (
@@ -35,48 +21,10 @@ export const CartModal = ({ handleShowCartModal }: Props): JSX.Element => {
       <button className={styles.modalCloseButton} onClick={handleShowCartModal}>
         <img src={CloseIcon} alt="Close" height="15" width="15" />
       </button>
-      <table className={styles.modalTable}>
-        <thead>
-          <tr>
-            <th>Product</th>
-            <th>Delete</th>
-            <th>Quantity</th>
-            <th>Add</th>
-          </tr>
-        </thead>
-        <tbody>
-          {cartItems.map((item) => (
-            <tr key={item.id}>
-              <td>
-                <p>{item.title}</p>
-              </td>
-              <td>
-                <button
-                  className={styles.modalButtonRemove}
-                  onClick={createRemoveFromCart(item)}
-                >
-                  -1
-                </button>
-              </td>
-              <td>
-                <p>{item.quantity}</p>
-              </td>
-              <td>
-                <button
-                  className={styles.modalButtonAdd}
-                  onClick={createAddToCart(item)}
-                >
-                  +1
-                </button>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-      <p>
-        <strong>Total: ${totalPay()}</strong>
-      </p>
-      <button className={styles.modalCheckout}>Checkout</button>
+      <Table />
+      <button className={styles.modalCheckout} onClick={handleNavigate}>
+        Checkout
+      </button>
     </div>
   );
 };

@@ -52,30 +52,11 @@
   ursor: pointer;
 }
 
-.modalTable {
-  text-align: center;
-}
-
-.modalTable thead {
-  padding: 10px;
-}
-
-.modalTable th,
-.modalTable td {
-  font-size: 12px;
-  padding: 0 10px;
-}
-
-.modalButtonRemove,
-.modalButtonAdd,
 .modalCheckout {
+  width: 100%;
   padding: 5px 10px;
   border: none;
   border-radius: 5px;
   background-color: #ffc107;
   cursor: pointer;
-}
-
-.modalCheckout {
-  width: 100%;
 }
