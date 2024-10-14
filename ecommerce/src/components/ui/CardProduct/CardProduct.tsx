@@ -1,3 +1,5 @@
+import { toast } from "sonner";
+
 import { useCartContext } from "../../../context/useCartContext";
 import { type CartProduct, type Product } from "../../../interface";
 import styles from "./CartProduct.module.css";
@@ -19,6 +21,7 @@ export const CardProduct = ({ product }: Props): JSX.Element => {
 
   const createHandleClick = (item: CartProduct) => () => {
     addToCart(item);
+    toast.success("Product added to cart");
   };
 
   return (
