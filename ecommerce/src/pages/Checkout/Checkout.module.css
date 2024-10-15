@@ -20,15 +20,3 @@
   flex-direction: column;
   justify-content: space-between;
 }
-
-.buyButton {
-  align-self: start;
-  background-color: #fff;
-  color: #000;
-  padding: 10px;
-  border-radius: 10px;
-  border: none;
-  font-size: 16px;
-  font-weight: 700;
-  cursor: pointer;
-}
