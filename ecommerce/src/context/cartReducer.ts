@@ -8,10 +8,10 @@ export const initialState: CartState = {
   cartItems: [],
 }
 
-export interface CartAction {
-  type: 'ADD_TO_CART' | 'REMOVE_FROM_CART';
-  payload: CartProduct;
-}
+export type CartAction =
+  | { type: 'ADD_TO_CART'; payload: CartProduct; }
+  | { type: 'REMOVE_FROM_CART'; payload: CartProduct; }
+  | { type: 'CLEAR_CART'; }
 
 export const cartReducer = (state: CartState, action: CartAction): CartState => {
   switch (action.type) {
@@ -52,6 +52,12 @@ export const cartReducer = (state: CartState, action: CartAction): CartState => 
       }
 
       return state
+    }
+    case 'CLEAR_CART': {
+      return {
+        ...state,
+        cartItems: [],
+      }
     }
     default:
       return state

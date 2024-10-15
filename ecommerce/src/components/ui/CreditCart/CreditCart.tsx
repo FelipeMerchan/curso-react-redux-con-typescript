@@ -4,6 +4,7 @@ import { useState } from "react";
 
 import styles from "./CreditCart.module.css";
 import "react-credit-cards-2/dist/es/styles-compiled.css";
+import { useCartContext } from "../../../context/useCartContext";
 
 export const CreditCart = () => {
   /* Esto debería ser un custom hook, esta no es la forma profesional
@@ -15,6 +16,7 @@ export const CreditCart = () => {
     cvc: "",
     focus: "",
   });
+  const { clearCart } = useCartContext();
 
   const { number, name, expiry, cvc } = cardData;
 
@@ -52,6 +54,8 @@ export const CreditCart = () => {
       cvc: "",
       focus: "",
     });
+
+    clearCart();
   };
 
   return (

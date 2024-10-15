@@ -6,7 +6,7 @@ import {
 } from "react";
 
 import { cartReducer, initialState } from "./cartReducer";
-import { CartContext } from "./CartContext";
+import { CartContext, type CartContextProps } from "./CartContext";
 import { type CartProduct } from "../interface";
 
 export const CartProvider = ({ children }: PropsWithChildren) => {
@@ -20,13 +20,16 @@ export const CartProvider = ({ children }: PropsWithChildren) => {
     dispatch({ type: "REMOVE_FROM_CART", payload: item });
   }, []);
 
-  const value = useMemo(() => {
+  const clearCart = useCallback(() => dispatch({ type: "CLEAR_CART" }), []);
+
+  const value = useMemo<CartContextProps>(() => {
     return {
       state,
       addToCart,
       removeFromCart,
+      clearCart,
     };
-  }, [state, addToCart, removeFromCart]);
+  }, [state, addToCart, removeFromCart, clearCart]);
 
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>;
 };
