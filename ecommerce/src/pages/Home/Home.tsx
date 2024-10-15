@@ -1,11 +1,14 @@
+import { useQuery } from "react-query";
 import { CardProduct } from "../../components/ui/CardProduct";
 import { Hero } from "../../components/ui/Hero";
-import { useProducts } from "../../hooks/useProducts";
+/* import { useProducts } from "../../hooks/useProducts"; */
 import styles from "./Home.module.css";
 import { Toaster } from "sonner";
+import { getProducts } from "../../services";
 
 export const Home = () => {
-  const { products, isLoading, error } = useProducts();
+  const { data, isLoading, error } = useQuery("products", getProducts);
+  /* const { products, isLoading, error } = useProducts(); */
 
   return (
     <>
@@ -14,7 +17,7 @@ export const Home = () => {
       {isLoading && <p>Loading</p>}
       {error && <p>Something went wrong</p>}
       <div className={styles.container}>
-        {products.map((product) => (
+        {data?.map((product) => (
           <CardProduct key={product.id} product={product} />
         ))}
       </div>
