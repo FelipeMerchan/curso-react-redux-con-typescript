@@ -21,7 +21,7 @@ export interface ProductResponse {
   head:         string;
   image:        string;
   name:         string;
-  release:      Release;
+  release?:      Release;
   tail:         string;
   type:         Type;
   id:           string;

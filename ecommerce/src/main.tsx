@@ -8,6 +8,7 @@ import { Home } from "./pages/Home/Home.tsx";
 import { CartProvider } from "./context/CartProvider.tsx";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { Login } from "./pages/Login/Login.tsx";
+import { Dashboard } from "./pages/Dashboard/Dashboard.tsx";
 
 const queryClient = new QueryClient();
 
@@ -26,7 +27,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/dashboard",
-    element: <p>Dashboard</p>,
+    element: <Dashboard />,
   },
 ]);
 
