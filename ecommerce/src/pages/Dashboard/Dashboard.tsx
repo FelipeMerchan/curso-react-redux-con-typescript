@@ -1,9 +1,38 @@
 import { useNavigate } from "react-router-dom";
 import styles from "./Dashboard.module.css";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 export const Dashboard = () => {
+  const [product, setProduct] = useState({
+    amiiboSeries: "",
+    character: "",
+    gameSeries: "",
+    head: "",
+    image: "",
+    name: "",
+    releaseDate: "",
+    tail: "",
+    type: "",
+    price: 0,
+  });
   const navigate = useNavigate();
+
+  const handleLogout = () => {
+    localStorage.removeItem("userLogin");
+    navigate("/login");
+  };
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setProduct({
+      ...product,
+      [event.target.name]: event.target.value,
+    });
+  };
+
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    console.log({ product });
+  };
 
   useEffect(() => {
     const userLogin = localStorage.getItem("userLogin");
@@ -14,17 +43,17 @@ export const Dashboard = () => {
     <div className={styles.container}>
       <div>
         <h1>Dashboard</h1>
-        <button>Logout</button>
+        <button onClick={handleLogout}>Logout</button>
       </div>
-      <form>
+      <form onSubmit={handleSubmit}>
         <div className={styles.formControlLogin}>
           <label htmlFor="amiiboSeries">Amiibo Series</label>
           <input
             type="text"
             name="amiiboSeries"
             id="amiiboSeries"
-            value={""}
-            onChange={() => {}}
+            value={product.amiiboSeries}
+            onChange={handleChange}
             required
           />
         </div>
@@ -34,8 +63,8 @@ export const Dashboard = () => {
             type="text"
             name="character"
             id="character"
-            value={""}
-            onChange={() => {}}
+            value={product.character}
+            onChange={handleChange}
             required
           />
         </div>
@@ -45,8 +74,8 @@ export const Dashboard = () => {
             type="text"
             name="gameSeries"
             id="gameSeries"
-            value={""}
-            onChange={() => {}}
+            value={product.gameSeries}
+            onChange={handleChange}
             required
           />
         </div>
@@ -56,8 +85,8 @@ export const Dashboard = () => {
             type="text"
             name="head"
             id="head"
-            value={""}
-            onChange={() => {}}
+            value={product.head}
+            onChange={handleChange}
             required
           />
         </div>
@@ -67,8 +96,8 @@ export const Dashboard = () => {
             type="url"
             name="image"
             id="image"
-            value={""}
-            onChange={() => {}}
+            value={product.image}
+            onChange={handleChange}
             required
           />
         </div>
@@ -78,19 +107,19 @@ export const Dashboard = () => {
             type="text"
             name="name"
             id="name"
-            value={""}
-            onChange={() => {}}
+            value={product.name}
+            onChange={handleChange}
             required
           />
         </div>
         <div className={styles.formControlLogin}>
-          <label htmlFor="release">Release</label>
+          <label htmlFor="releaseDate">Release date</label>
           <input
-            type="text"
-            name="release"
-            id="release"
-            value={""}
-            onChange={() => {}}
+            type="date"
+            name="releaseDate"
+            id="releaseDate"
+            value={product.releaseDate}
+            onChange={handleChange}
             required
           />
         </div>
@@ -100,8 +129,8 @@ export const Dashboard = () => {
             type="text"
             name="tail"
             id="tail"
-            value={""}
-            onChange={() => {}}
+            value={product.tail}
+            onChange={handleChange}
             required
           />
         </div>
@@ -111,19 +140,8 @@ export const Dashboard = () => {
             type="text"
             name="type"
             id="type"
-            value={""}
-            onChange={() => {}}
-            required
-          />
-        </div>
-        <div className={styles.formControlLogin}>
-          <label htmlFor="id">ID</label>
-          <input
-            type="text"
-            name="id"
-            id="id"
-            value={""}
-            onChange={() => {}}
+            value={product.type}
+            onChange={handleChange}
             required
           />
         </div>
@@ -133,8 +151,8 @@ export const Dashboard = () => {
             type="number"
             name="price"
             id="price"
-            value={""}
-            onChange={() => {}}
+            value={product.price}
+            onChange={handleChange}
             required
           />
         </div>
