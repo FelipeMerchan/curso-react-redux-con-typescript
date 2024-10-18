@@ -1,21 +1,28 @@
 import { useNavigate } from "react-router-dom";
-import styles from "./Dashboard.module.css";
 import { useEffect, useState } from "react";
+import { useMutation } from "react-query";
+
+import styles from "./Dashboard.module.css";
+import { type CreateProductRequest } from "../../interface";
+import { createProduct } from "../../services";
 
 export const Dashboard = () => {
-  const [product, setProduct] = useState({
+  const [product, setProduct] = useState<CreateProductRequest>({
     amiiboSeries: "",
     character: "",
     gameSeries: "",
     head: "",
     image: "",
     name: "",
-    releaseDate: "",
+    release: "",
     tail: "",
     type: "",
     price: 0,
   });
   const navigate = useNavigate();
+  const mutation = useMutation((newProduct: CreateProductRequest) => {
+    return createProduct(newProduct);
+  });
 
   const handleLogout = () => {
     localStorage.removeItem("userLogin");
@@ -31,7 +38,7 @@ export const Dashboard = () => {
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    console.log({ product });
+    mutation.mutate(product);
   };
 
   useEffect(() => {
@@ -113,12 +120,12 @@ export const Dashboard = () => {
           />
         </div>
         <div className={styles.formControlLogin}>
-          <label htmlFor="releaseDate">Release date</label>
+          <label htmlFor="release">Release date</label>
           <input
             type="date"
-            name="releaseDate"
-            id="releaseDate"
-            value={product.releaseDate}
+            name="release"
+            id="release"
+            value={product.release}
             onChange={handleChange}
             required
           />

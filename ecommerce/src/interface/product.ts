@@ -21,10 +21,23 @@ export interface ProductResponse {
   head:         string;
   image:        string;
   name:         string;
-  release?:      Release;
+  release:      Release;
   tail:         string;
   type:         Type;
   id:           string;
+  price:        number;
+}
+
+export interface CreateProductRequest {
+  amiiboSeries: string;
+  character:    string;
+  gameSeries:   string;
+  head:         string;
+  image:        string;
+  name:         string;
+  release:      string;
+  tail:         string;
+  type:         string;
   price:        number;
 }
 

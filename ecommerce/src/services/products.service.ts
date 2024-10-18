@@ -1,4 +1,5 @@
-import { type Product, type ProductResponse } from "../interface";
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import { CreateProductRequest, type Product, type ProductResponse } from "../interface";
 
 export const getProducts = async (page = 0): Promise<Product[]> => {
   try {
@@ -22,7 +23,27 @@ export const getProducts = async (page = 0): Promise<Product[]> => {
       throw new Error('Failed to get products')
     }
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  } catch (error) {
+    throw new Error('Network error')
+  }
+}
+
+export const createProduct = async (product: CreateProductRequest): Promise<ProductResponse> => {
+  try {
+    const response = await fetch('http://localhost:3000/products', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(product),
+    })
+
+    if (response.ok) {
+      const data = await response.json();
+      return data;
+    } else {
+      throw new Error('Failed to create product');
+    }
   } catch (error) {
     throw new Error('Network error')
   }
